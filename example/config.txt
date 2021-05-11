@@ -1,0 +1,2 @@
+Prefix plugins/ACE/example
+Plugin ACE inputfile parameters.txt outputfile ace
