@@ -1,6 +1,11 @@
-
 dyn.load(paste("RPluMA", .Platform$dynlib.ext, sep=""))
 source("RPluMA.R")
+
+list.of.packages <- c("microbiome", "ggplot2", "ape", "psadd")
+
+new.packages <- list.of.packages[!(list.of.packages %in% installed.packages()[,"Package"])]
+
+if(length(new.packages > 0)) install.packages(new.packages)
 
 library(microbiome)
 library(ggplot2)
@@ -11,7 +16,7 @@ library(psadd)
 input <- function(inputfile) {
   pfix = prefix()
   parameters <<- read.table(inputfile, as.is=T);
-  rownames(parameters) <<- parameters[,1]; 
+  rownames(parameters) <<- parameters[,1];
    # Need to get the three files
    otu.path <<- paste(pfix, parameters["otufile", 2], sep="/")
    tree.path <<- paste(pfix, parameters["tree", 2], sep="/")
